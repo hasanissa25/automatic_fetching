@@ -31,8 +31,7 @@ def download_image(data_uri, output_dir):
                     f.write(chunk)
             logging.info(f"Saved image to {file_name}.")
         else:
-            logging.error(f"Failed to download image from {
-                          image_url} (status code {response.status_code}).")
+            logging.error(f"Failed to download image from {image_url} (status code {response.status_code}).")  # noqa
     except Exception as e:
         logging.error(f"An error occurred while downloading the image: {e}")
 
@@ -70,8 +69,7 @@ def process_collection(base_url, collection):
         else:
             logging.info("No select element with id 'pvPageSelect' found.")
     else:
-        logging.info(f"Failed to access the base URL: {
-                     full_url} (status code {response.status_code}).")
+        logging.info(f"Failed to access the base URL: {full_url} (status code {response.status_code}).")  # noqa
 
 
 def process_collections_concurrently(base_url, collections, cores):
@@ -82,8 +80,7 @@ def process_collections_concurrently(base_url, collections, cores):
         try:
             process_collection(base_url, collection)
         except Exception as e:
-            logging.error(f"An error occurred while processing collection {
-                          collection}: {e}")
+            logging.error(f"An error occurred while processing collection {collection}: {e}")  # noqa
 
     with ThreadPoolExecutor(max_workers=cores) as executor:
         futures = {executor.submit(

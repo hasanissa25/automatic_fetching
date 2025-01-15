@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 
 setup(
-    name='stationverification',
+    name='automatic_fetching',
     packages=find_packages(exclude=('tests')),
     install_requires=[
         'beautifulsoup4',
