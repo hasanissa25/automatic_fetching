@@ -10,9 +10,13 @@ import multiprocessing
 
 
 # Configure logging
-settings = get_app_settings()
-settings.log_level = LogLevels['INFO']
-settings.configure_logging()
+log_format: str = '%(asctime)s.%(msecs)03d %(levelname)s \
+%(module)s %(funcName)s: %(message)s'
+log_datefmt: str = '%Y-%m-%d %H:%M:%S'
+logging.basicConfig(
+    format=log_format,
+    datefmt=log_datefmt,
+    level=logging.INFO)
 
 
 def process_collection(base_url, collection):
@@ -105,9 +109,6 @@ def main(urls_file: str, cores: int):
     """
     Read the URLs file and count the number of option elements in each collection in parallel.
     """
-    settings.log_level = LogLevels['INFO']
-    settings.configure_logging()
-
     with open(urls_file, 'r') as f:
         lines = f.readlines()
 

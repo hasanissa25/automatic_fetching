@@ -2,15 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import logging
-from automatic_fetching.config import get_app_settings, LogLevels
 import click
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
 
 # Configure logging
-settings = get_app_settings()
-settings.log_level = LogLevels['INFO']
-settings.configure_logging()
+log_format: str = '%(asctime)s.%(msecs)03d %(levelname)s \
+%(module)s %(funcName)s: %(message)s'
+log_datefmt: str = '%Y-%m-%d %H:%M:%S'
+logging.basicConfig(
+    format=log_format,
+    datefmt=log_datefmt,
+    level=logging.INFO)
 
 
 def download_image(data_uri, output_dir):
@@ -111,9 +114,6 @@ def main(urls_file: str, cores: int):
     """
     Read the URLs file and process each collection in parallel.
     """
-    settings.log_level = LogLevels['INFO']
-    settings.configure_logging()
-
     # Read the URLs from the file
     with open(urls_file, 'r') as f:
         lines = f.readlines()

@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import logging
-from automatic_fetching.config import get_app_settings, LogLevels
 import click
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
@@ -11,9 +10,13 @@ import multiprocessing
 
 
 # Configure logging
-settings = get_app_settings()
-settings.log_level = LogLevels['INFO']
-settings.configure_logging()
+log_format: str = '%(asctime)s.%(msecs)03d %(levelname)s \
+%(module)s %(funcName)s: %(message)s'
+log_datefmt: str = '%Y-%m-%d %H:%M:%S'
+logging.basicConfig(
+    format=log_format,
+    datefmt=log_datefmt,
+    level=logging.INFO)
 
 
 def get_page_links(base_url, page_number):
