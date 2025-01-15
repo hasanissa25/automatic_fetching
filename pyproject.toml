@@ -1,12 +1,12 @@
 [build-system]
-requires = ["setuptools>=64", "setuptools-scm>=8"]
+requires = ["setuptools>=64", "setuptools-scm<8"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "automatic_fetching"
 dynamic = ["version"]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.6"
 classifiers = [
     # How mature is this project? Common values are
     #   3 - Alpha
@@ -21,10 +21,6 @@ classifiers = [
     'Natural Language :: English',
 
     'License :: OSI Approved :: GNU General Public License (GPL)',
-
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12',
 ]
 dependencies = [
     'beautifulsoup4',
