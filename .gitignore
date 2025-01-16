@@ -2,3 +2,4 @@ venv/*
 automatic_fetching/__pycache__/*
 automatic_fetching.egg-info/*
 build*
+downloads/*

@@ -28,8 +28,7 @@ def get_page_links(base_url, page_number):
     response = requests.get(url)
 
     if response.status_code != 200:
-        logging.error(f"Failed to fetch page {
-                      page_number}: {response.status_code}")
+        logging.error(f"Failed to fetch page {page_number}: {response.status_code}")  # noqa
         return []
 
     soup = BeautifulSoup(response.text, "html.parser")

@@ -1,12 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import logging
-from automatic_fetching.config import get_app_settings, LogLevels
 import click
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
 
-# Sample call: clear && file_count --urls_file links.txt --cores 16
+# Sample call: clear && get_number_of_files_for_each_collection --urls_file links.txt --cores 16
 
 
 # Configure logging
@@ -39,15 +38,12 @@ def process_collection(base_url, collection):
         select_element = soup.find('select', {'id': 'pvPageSelect'})
         if select_element:
             options = select_element.find_all('option')
-            logging.info(f"Found {len(options)} option elements in collection '{
-                         collection}'.")
+            logging.info(f"Found {len(options)} option elements in collection '{collection}'.")  # noqa
             return len(options)
         else:
-            logging.info(f"No select element with id 'pvPageSelect' found in collection '{
-                         collection}'.")
+            logging.info(f"No select element with id 'pvPageSelect' found in collection '{collection}'.")  # noqa
     else:
-        logging.error(f"Failed to access the URL: {
-                      full_url} (status code {response.status_code}).")
+        logging.error(f"Failed to access the URL: {full_url} (status code {response.status_code}).")  # noqa
 
     return 0
 
@@ -72,8 +68,7 @@ def process_collections_concurrently(base_url, collections, cores):
         try:
             return collection, process_collection(base_url, collection)
         except Exception as e:
-            logging.error(f"An error occurred while processing collection '{
-                          collection}': {e}")
+            logging.error(f"An error occurred while processing collection '{collection}': {e}")  # noqa
             return collection, 0
 
     with ThreadPoolExecutor(max_workers=cores) as executor:
@@ -85,11 +80,9 @@ def process_collections_concurrently(base_url, collections, cores):
             try:
                 collection_name, count = future.result()
                 results[collection_name] = count
-                logging.info(f"Finished processing collection '{
-                             collection_name}' with {count} option elements.")
+                logging.info(f"Finished processing collection '{collection_name}' with {count} option elements.")  # noqa
             except Exception as e:
-                logging.error(f"Error processing collection '{
-                              collection}': {e}")
+                logging.error(f"Error processing collection '{collection}': {e}")  # noqa
 
     return results
 
@@ -122,6 +115,7 @@ def main(urls_file: str, cores: int):
     with open('./number_of_files.txt', 'w') as f:
         for collection in collections:  # Ensure all collections are included
             count = results.get(collection, 0)
-            f.write(f"{collection}: {count} option elements\n")
+            f.write(f"{collection}: {count}\n")
 
-    logging.info("Option element counts written to './number_of_files.txt'.")
+    logging.info(
+        "Option element counts written to './expected_number_of_files_per_collection.txt'.")

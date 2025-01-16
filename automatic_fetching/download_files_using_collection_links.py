@@ -6,6 +6,9 @@ import click
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
 
+# Sample call: nohup fetch_images --urls_file missing_links.txt --cores 16 &> fetching_images.log &
+
+
 # Configure logging
 log_format: str = '%(asctime)s.%(msecs)03d %(levelname)s \
 %(module)s %(funcName)s: %(message)s'
