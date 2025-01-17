@@ -1,0 +1,5 @@
+nohup: ignoring input
+Usage: fetch_images [OPTIONS]
+Try 'fetch_images --help' for help.
+
+Error: Invalid value for '--urls_file': File 'missing_or_mismatched.txt' does not exist.

@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
 
 # Sample call: nohup fetch_images --urls_file links_to_collections_missing.txt --cores 16 &> fetching_images.log &
-# Sample call: nohup fetch_images --urls_file need_to_fetch.txt --cores 16 &> fetching_images.log &
+# Sample call: nohup fetch_images --urls_file missing_collections.txt --cores 16 &> fetching_images.log &
 # Parent process: 2124667
 
 # Configure logging
