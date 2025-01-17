@@ -23,6 +23,8 @@ setup(
                 automatic_fetching.count_total_number_of_options_from_file:main',
             'check_for_missing_files = \
                 automatic_fetching.check_for_missing_files:main',
+            'filter_missing_entries = \
+                automatic_fetching.filter_missing_entries:main',
 
         ]
     }

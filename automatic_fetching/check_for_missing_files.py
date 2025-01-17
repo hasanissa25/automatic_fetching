@@ -1,5 +1,5 @@
 # Define file paths
-real_file = "./number_of_files_in_download_directory_pc_21.txt"
+real_file = "./number_of_files_in_download_directory_pc21.txt"
 expected_file = "./expected_number_of_files_per_collection.txt"
 
 
